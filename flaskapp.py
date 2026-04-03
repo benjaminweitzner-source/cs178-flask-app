@@ -53,10 +53,8 @@ def delete_user():
 
 @app.route('/display-users')
 def display_users():
-    # hard code a value to the users_list;
-    # note that this could have been a result from an SQL query :) 
-    users_list = (('John','Doe','Comedy'),('Jane', 'Doe','Drama'))
-    return render_template('display_users.html', users = users_list)
+    users_list = execute_query('SELECT * FROM Inventory')
+    return render_template('display_users.html', users=users_list)
 
 
 # these two lines of code should always be the last in the file
