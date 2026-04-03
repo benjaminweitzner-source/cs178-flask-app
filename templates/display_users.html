@@ -20,9 +20,10 @@
             <tbody> <!-- table body -- loop through all of the users -->
                 {% for user in users %}
                 <tr>
-                    <td>{{ user[0] }}</td>
-                    <td>{{ user[1] }}</td>
-                    <td>{{ user[2] }}</td>
+                    <td>{{ user['ID'] }}</td>
+                    <td>{{ user['description'] }}</td>
+                    <td>{{ user['price'] }}</td>
+                    <td>{{ user['category'] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
