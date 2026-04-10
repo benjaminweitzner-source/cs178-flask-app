@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Inbound Orders</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }}">{{ message }}</div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    <div class="container">
+        <h2 class="mt-5">Inbound Orders</h2>
+        <a href="/add-order" class="btn btn-primary mb-3">Add Order</a>
+        <a href="/delete-order" class="btn btn-danger mb-3">Delete Order</a>
+        <table class="table table-bordered table-striped mt-3">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Order ID</th>
+                    <th>Item Description</th>
+                    <th>Quantity</th>
+                    <th>Supplier</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for order in orders %}
+                <tr>
+                    <td>{{ order['order_id'] }}</td>
+                    <td>{{ order['item_description'] }}</td>
+                    <td>{{ order['quantity'] }}</td>
+                    <td>{{ order['supplier'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
