@@ -26,7 +26,7 @@ def execute_query(query, args=()):
 import boto3
 
 REGION = "us-east-1"
-TABLE_NAME = "InboundOrders"
+TABLE_NAME = "Inbound_Inv"
 
 def get_dynamo_table():
     """Return a reference to the DynamoDB InboundOrders table."""
