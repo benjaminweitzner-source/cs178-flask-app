@@ -92,6 +92,16 @@ def inventory_by_category():
     ''')
     return render_template('inventory_by_category.html', items=results)
 
+@app.route('/update-order', methods=['GET', 'POST'])
+def update_order_route():
+    if request.method == 'POST':
+        order_id = request.form['order_id']
+        quantity = int(request.form['quantity'])
+        update_order(order_id, quantity)
+        flash('Order updated!', 'success')
+        return redirect(url_for('inbound_inv'))
+    return render_template('update_order.html')
+
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)

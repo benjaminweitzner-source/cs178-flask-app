@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Update Order</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Update Order Quantity</h2>
+        <form action="{{ url_for('update_order_route') }}" method="post">
+            <div class="form-group">
+                <label>Order ID:</label>
+                <input type="text" name="order_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>New Quantity:</label>
+                <input type="number" name="quantity" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-secondary">Update Order</button>
+        </form>
+    </div>
+</body>
+</html>
