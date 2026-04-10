@@ -57,10 +57,6 @@ def display_users():
     return render_template('display_users.html', users=users_list)
 
 
-# these two lines of code should always be the last in the file
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080, debug=True)
-
 @app.route('/inbound-orders')
 def inbound_inv():
     orders = get_all_orders()
@@ -95,3 +91,7 @@ def inventory_by_category():
         JOIN Category ON Inventory.categoryID = Category.categoryID
     ''')
     return render_template('inventory_by_category.html', items=results)
+
+# these two lines of code should always be the last in the file
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=8080, debug=True)
