@@ -22,3 +22,34 @@ def execute_query(query, args=()):
     rows = cur.fetchall()
     cur.close()
     return rows
+
+import boto3
+
+REGION = "us-east-1"
+TABLE_NAME = "InboundOrders"
+
+def get_dynamo_table():
+    """Return a reference to the DynamoDB InboundOrders table."""
+    dynamodb = boto3.resource("dynamodb", region_name=REGION)
+    return dynamodb.Table(TABLE_NAME)
+
+def get_all_orders():
+    """Scan the entire InboundOrders table and return all items."""
+    table = get_dynamo_table()
+    response = table.scan()
+    return response.get("Items", [])
+
+def add_order(order_id, item_description, quantity, supplier):
+    """Put a new order into the InboundOrders table."""
+    table = get_dynamo_table()
+    table.put_item(Item={
+        "order_id": order_id,
+        "item_description": item_description,
+        "quantity": quantity,
+        "supplier": supplier
+    })
+
+def delete_order(order_id):
+    """Delete an order from the InboundOrders table by order_id."""
+    table = get_dynamo_table()
+    table.delete_item(Key={"order_id": order_id})

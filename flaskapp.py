@@ -87,14 +87,11 @@ def delete_order_route():
         return redirect(url_for('inbound_inv'))
     return render_template('delete_order.html')
 
-@app.route('/fix')
-def fix_categories():
-    conn = get_conn()
-    cur = conn.cursor()
-    cur.execute("UPDATE Inventory SET categoryID = 1 WHERE ID IN (1, 11)")      # Toys
-    cur.execute("UPDATE Inventory SET categoryID = 2 WHERE ID IN (4, 5, 6)")    # Kitchen
-    cur.execute("UPDATE Inventory SET categoryID = 3 WHERE ID IN (7, 8, 9, 10)") # Furniture
-    cur.execute("UPDATE Inventory SET categoryID = 2 WHERE ID IN (2, 3)")       # Toys (Doll House, Building Blocks)
-    conn.commit()
-    cur.close()
-    return "Categories updated!"
+@app.route('/inventory-by-category')
+def inventory_by_category():
+    results = execute_query('''
+        SELECT Inventory.description, Inventory.price, Category.name 
+        FROM Inventory 
+        JOIN Category ON Inventory.categoryID = Category.categoryID
+    ''')
+    return render_template('inventory_by_category.html', items=results)
