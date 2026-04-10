@@ -18,38 +18,22 @@ def home():
 @app.route('/add-user', methods=['GET', 'POST'])
 def add_user():
     if request.method == 'POST':
-        # Extract form data
-        name = request.form['name']
-        genre = request.form['genre']
-        
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Name:", name, ":", "Favorite Genre:", genre)
-        
-        flash('User added successfully! Huzzah!', 'success')  # 'success' is a category; makes a green banner at the top
-        # Redirect to home page or another page upon successful submission
+        description = request.form['description']
+        price = float(request.form['price'])
+        category_id = int(request.form['category_id'])
+        add_inventory_item(description, price, category_id)
+        flash('Item added successfully!', 'success')
         return redirect(url_for('home'))
-    else:
-        # Render the form page if the request method is GET
-        return render_template('add_user.html')
+    return render_template('add_user.html')
 
-@app.route('/delete-user',methods=['GET', 'POST'])
+@app.route('/delete-user', methods=['GET', 'POST'])
 def delete_user():
     if request.method == 'POST':
-        # Extract form data
-        name = request.form['name']
-        
-        # Process the data (e.g., add it to a database)
-        # For now, let's just print it to the console
-        print("Name to delete:", name)
-        
-        flash('User deleted successfully! Hoorah!', 'warning') 
-        # Redirect to home page or another page upon successful submission
+        item_id = int(request.form['item_id'])
+        delete_inventory_item(item_id)
+        flash('Item deleted successfully!', 'warning')
         return redirect(url_for('home'))
-    else:
-        # Render the form page if the request method is GET
-        return render_template('delete_user.html')
-
+    return render_template('delete_user.html')
 
 @app.route('/display-users')
 def display_users():

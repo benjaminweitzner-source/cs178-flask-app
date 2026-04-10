@@ -1,16 +1,27 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Add New User</title>
-  </head>
-  <body>
-    <h1>Add New User</h1>
-    <form action="{{ url_for('add_user') }}" method="post">
-      <label for="name">Name:</label><br />
-      <input type="text" id="name" name="name" required /><br />
-      <label for="genre">Favorite Genre:</label><br />
-      <input type="text" id="genre" name="genre" required /><br />
-      <input type="submit" value="Submit" />
-    </form>
-  </body>
+<head>
+    <title>Add Inventory Item</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Add Inventory Item</h2>
+        <form action="{{ url_for('add_user') }}" method="post">
+            <div class="form-group">
+                <label>Description:</label>
+                <input type="text" name="description" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Price:</label>
+                <input type="number" step="0.01" name="price" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Category ID (1=Toys, 2=Kitchen, 3=Furniture):</label>
+                <input type="number" name="category_id" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Item</button>
+        </form>
+    </div>
+</body>
 </html>
