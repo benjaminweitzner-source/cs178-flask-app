@@ -94,4 +94,4 @@ def inventory_by_category():
 
 # these two lines of code should always be the last in the file
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8000, debug=True)
+    app.run(host='0.0.0.0', port=8080, debug=True)
