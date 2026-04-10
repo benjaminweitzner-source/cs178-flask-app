@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Inbound Order</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h2 class="mt-5">Add Inbound Order</h2>
+        <form action="{{ url_for('add_order_route') }}" method="post">
+            <div class="form-group">
+                <label>Order ID:</label>
+                <input type="text" name="order_id" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Item Description:</label>
+                <input type="text" name="item_description" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Quantity:</label>
+                <input type="number" name="quantity" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label>Supplier:</label>
+                <input type="text" name="supplier" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add Order</button>
+        </form>
+    </div>
+</body>
+</html>
